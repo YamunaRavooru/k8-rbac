@@ -25,3 +25,29 @@ roleRef:
   kind: Role #this must be Role or ClusterRole
   name: default-trainee # this must match the name of the Role or ClusterRole you wish to bind to
   apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: default-trainee
+# When you create the "monitoring-endpoints" ClusterRole,
+# the rules below will be added to the "monitoring" ClusterRole.
+rules:
+- apiGroups: [""]
+  resources: ["nodes", "persistantvolume"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+# This cluster role binding allows anyone in the "manager" group to read secrets in any namespace.
+kind: ClusterRoleBinding
+metadata:
+  name: default-trainee
+subjects:
+# You can specify more than one "subject"
+- kind: User
+  name: suresh # "name" is case sensitive
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: default-trainee
+  apiGroup: rbac.authorization.k8s.io

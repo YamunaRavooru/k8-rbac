@@ -16,4 +16,4 @@ metadata:
   creationTimestamp: "2025-03-19T14:19:57Z"
   name: aws-auth
   namespace: kube-system
-  uid: ea3d0e5e-4a7d-4387-8373-0cbb2b013986
+  uid: ea3d0e5e-4a7d-4387-8373-0cbb2b013986 #it will not manditory when you give u have to check current uid
